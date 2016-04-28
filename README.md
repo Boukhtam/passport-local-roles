@@ -1,16 +1,9 @@
-# passport-local
-
-[![Build](https://travis-ci.org/jaredhanson/passport-local.png)](https://travis-ci.org/jaredhanson/passport-local)
-[![Coverage](https://coveralls.io/repos/jaredhanson/passport-local/badge.png)](https://coveralls.io/r/jaredhanson/passport-local)
-[![Quality](https://codeclimate.com/github/jaredhanson/passport-local.png)](https://codeclimate.com/github/jaredhanson/passport-local)
-[![Dependencies](https://david-dm.org/jaredhanson/passport-local.png)](https://david-dm.org/jaredhanson/passport-local)
-[![Tips](http://img.shields.io/gittip/jaredhanson.png)](https://www.gittip.com/jaredhanson/)
+# passport-local-roles
 
 
-[Passport](http://passportjs.org/) strategy for authenticating with a username
-and password.
+[Passport](http://passportjs.org/) strategy for authenticating with a username, password and User Roles.
 
-This module lets you authenticate using a username and password in your Node.js
+This module lets you authenticate using a username,password and user roles in your Node.js
 applications.  By plugging into Passport, local authentication can be easily and
 unobtrusively integrated into any application or framework that supports
 [Connect](http://www.senchalabs.org/connect/)-style middleware, including
@@ -19,7 +12,7 @@ unobtrusively integrated into any application or framework that supports
 ## Install
 
 ```bash
-$ npm install passport-local
+$ npm install passport-local-roles
 ```
 
 ## Usage
@@ -32,7 +25,7 @@ credentials and calls `done` providing a user.
 
 ```js
 passport.use(new LocalStrategy(
-  function(username, password, done) {
+  function(username, password, role, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
@@ -51,8 +44,8 @@ The available options are:
 
 * `usernameField` - Optional, defaults to 'username'
 * `passwordField` - Optional, defaults to 'password'
-
-Both fields define the name of the properties in the POST body that are sent to the server.
+* `roleField` - Optional, defaults to 'default'
+All fields define the name of the properties in the POST body that are sent to the server.
 
 #### Parameters
 
@@ -63,9 +56,10 @@ differently, options are available to change the defaults.
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
+        roleField: 'role',
         session: false
       },
-      function(username, password, done) {
+      function(username, password, role, done) {
         // ...
       }
     ));
@@ -80,10 +74,11 @@ accordingly.
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
+        roleField: 'role',
         passReqToCallback: true,
         session: false
       },
-      function(req, username, password, done) {
+      function(req, username, password, role, done) {
         // request object is now first argument
         // ...
       }
@@ -98,31 +93,21 @@ For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
 ```js
-app.post('/login', 
+app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
 ```
 
-## Examples
 
-Developers using the popular [Express](http://expressjs.com/) web framework can
-refer to an [example](https://github.com/passport/express-4.x-local-example)
-as a starting point for their own web applications.
-
-Additional examples can be found on the [wiki](https://github.com/jaredhanson/passport-local/wiki/Examples).
-
-## Tests
-
-```bash
-$ npm install
-$ npm test
-```
 
 ## Credits
 
 - [Jared Hanson](http://github.com/jaredhanson)
+- [Dhyey Moliya](http://github.com/DhyeyMoliya)
+- [Dhruman Bhadeshiya](http://github.com/dkbhadeshiya)
+
 
 ## License
 

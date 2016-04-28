@@ -1,7 +1,7 @@
 {
-  "name": "passport-local",
-  "version": "1.0.0",
-  "description": "Local username and password authentication strategy for Passport.",
+  "name": "passport-local-roles",
+  "version": "1.0.1",
+  "description": "Local username and password authentication strategy with user roles for Passport.",
   "keywords": [
     "passport",
     "local",
@@ -9,19 +9,28 @@
     "authn",
     "authentication",
     "username",
-    "password"
+    "password",
+    "role",
+    "user roles"
   ],
   "author": {
+    "name": "Dhruman Bhadeshiya",
+    "email": "dhrumangajjar@gmail.com",
+    "url": ""
+  },
+  "contributors": [{
+    "name": "Dhyey Moliya",
+    "email": "dhyeymoliya@gmail.com",
+    "url": ""
+  },
+  {
     "name": "Jared Hanson",
     "email": "jaredhanson@gmail.com",
     "url": "http://www.jaredhanson.net/"
-  },
+  }],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-local.git"
-  },
-  "bugs": {
-    "url": "http://github.com/jaredhanson/passport-local/issues"
+    "url": "git://github.com/dkbhadeshiya/passport-local-roles.git"
   },
   "license": "MIT",
   "licenses": [
@@ -41,8 +50,5 @@
   },
   "engines": {
     "node": ">= 0.4.0"
-  },
-  "scripts": {
-    "test": "node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.test.js"
   }
 }
